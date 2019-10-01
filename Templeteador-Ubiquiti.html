@@ -1,147 +1,131 @@
 <html>
-	<head>
 
-		<!-- JavaScript principal-->
-		<script>
-			var nombrePlaza; //nombre de la plaza
-			//var idPlaza; //ID de la plaza
-			var nZ; //número de Zona
-			var nP; //número de Plaza
-			var nAP; //número de AP
-			var dirExterna;
-			var dirExterna2;
-			var dirInterna;
+<head>
 
-			function cargaDatos(){
-				nombrePlaza = "rt-pz-" + document.getElementById('idGeneral').value + "-" + document.getElementById('nombre').value;
-				nZ = document.getElementById('zona').value;
-				nP = document.getElementById('plaza').value;
-				nAP = document.getElementById('aps').value;
+    <!-- JavaScript principal-->
+    <script>
+        var nombreLugar; //nombre del lugar
+        //var idLugar; //ID del lugar
+        var nZ; //número de zona
+        var nL; //número del lugar
+        var nAP; //número de AP
+        var dirExterna;
+        var dirExterna2;
+        var dirInterna;
 
-				document.getElementById("muestraNombre").innerHTML = nombrePlaza; //pasa el nombre al HTML
-			}
+        function cargaDatos() {
+            nombreLugar = "rt-" + document.getElementById('idGeneral').value + "-" + document.getElementById('nombre').value;
+            nZ = document.getElementById('zona').value;
+            nL = document.getElementById('lugar').value;
+            nAP = document.getElementById('aps').value;
 
-			function verifica(){
-			}
+            document.getElementById("muestraNombre").innerHTML = nombreLugar; //pasa el nombre al HTML
+        }
 
-			function armaSubredes(){
-				if (nZ < 10) {
-					subRedExterna = "10." + nZ + "0.2." + 0;
-					dirExterna = "10." + nZ + "0.2." + (nP*1+9); //hay que transformar la string nP en decimal antes
+        function verifica() {}
 
-					subRedExterna2 = "10." + nZ + "0.4." + 0;
-					dirExterna2 = "10." + nZ + "0.4." + (nP*1+9);
+        function armaSubredes() {
+            if (nZ < 10) {
+                subRedExterna = "10." + nZ + "0.2." + 0;
+                dirExterna = "10." + nZ + "0.2." + (nL * 1 + 9); //hay que transformar la string nL en decimal antes
 
-					subRedInterna = "10." + nZ + "0.3." + (nP*16-16);
-					dirInterna = "10." + nZ + "0.3." + (nP*16-15);
-					primerDhcp = "10." + nZ + "0.3." + (nP*16-14);
-					ultimoDhcp = "10." + nZ + "0.3." + (nP*16-2);
+                subRedExterna2 = "10." + nZ + "0.4." + 0;
+                dirExterna2 = "10." + nZ + "0.4." + (nL * 1 + 9);
 
-					vlanExterna = (nZ*1+10) + "02";
-				} else if (nZ == 10) {
-					subRedExterna = "10." + nZ + "0.12." + 0;
-					dirExterna = "10." + nZ + "0.12." + (nP*1+9);
+                subRedInterna = "10." + nZ + "0.3." + (nL * 16 - 16);
+                dirInterna = "10." + nZ + "0.3." + (nL * 16 - 15);
+                primerDhcp = "10." + nZ + "0.3." + (nL * 16 - 14);
+                ultimoDhcp = "10." + nZ + "0.3." + (nL * 16 - 2);
 
-					subRedExterna2 = "10." + nZ + "0.14." + 0;
-					dirExterna2 = "10." + nZ + "0.14." + (nP*1+9);
+                vlanExterna = (nZ * 1 + 10) + "02";
+            } else if (nZ == 10) {
+                subRedExterna = "10." + nZ + "0.12." + 0;
+                dirExterna = "10." + nZ + "0.12." + (nL * 1 + 9);
 
-					subRedInterna = "10." + nZ + "0.13." + (nP*16-16);
-					dirInterna = "10." + nZ + "0.13." + (nP*16-15);
-					primerDhcp = "10." + nZ + "0.13." + (nP*16-14);
-					ultimoDhcp = "10." + nZ + "0.13." + (nP*16-2);
+                subRedExterna2 = "10." + nZ + "0.14." + 0;
+                dirExterna2 = "10." + nZ + "0.14." + (nL * 1 + 9);
 
-					vlanExterna = (nZ*1+10) + "12";
-				} else {
-					subRedExterna = "10." + (nZ*1+10) + "0.2." + 0;
-					dirExterna = "10." + (nZ*1+10) + "0.2." + (nP*1+9);
+                subRedInterna = "10." + nZ + "0.13." + (nL * 16 - 16);
+                dirInterna = "10." + nZ + "0.13." + (nL * 16 - 15);
+                primerDhcp = "10." + nZ + "0.13." + (nL * 16 - 14);
+                ultimoDhcp = "10." + nZ + "0.13." + (nL * 16 - 2);
 
-					subRedExterna2 = "10." + (nZ*1+10) + "0.4." + 0;
-					dirExterna2 = "10." + (nZ*1+10) + "0.4." + (nP*1+9);
+                vlanExterna = (nZ * 1 + 10) + "12";
+            } else {
+                subRedExterna = "10." + (nZ * 1 + 10) + "0.2." + 0;
+                dirExterna = "10." + (nZ * 1 + 10) + "0.2." + (nL * 1 + 9);
 
-					subRedInterna = "10." + (nZ*1+10) + "0.3." + (nP*16-16);
-					dirInterna = "10." + (nZ*1+10) + "0.3." + (nP*16-15);
-					primerDhcp = "10." + (nZ*1+10) + "0.3." + (nP*16-14);
-					ultimoDhcp = "10." + (nZ*1+10) + "0.3." + (nP*16-2);
+                subRedExterna2 = "10." + (nZ * 1 + 10) + "0.4." + 0;
+                dirExterna2 = "10." + (nZ * 1 + 10) + "0.4." + (nL * 1 + 9);
 
-					vlanExterna = (nZ*1+10) + "02";
-				}
+                subRedInterna = "10." + (nZ * 1 + 10) + "0.3." + (nL * 16 - 16);
+                dirInterna = "10." + (nZ * 1 + 10) + "0.3." + (nL * 16 - 15);
+                primerDhcp = "10." + (nZ * 1 + 10) + "0.3." + (nL * 16 - 14);
+                ultimoDhcp = "10." + (nZ * 1 + 10) + "0.3." + (nL * 16 - 2);
 
-				document.getElementById("redExterna").innerHTML = subRedExterna; //pasa al cuerpo HTML
-				document.getElementById("afuera").innerHTML = dirExterna;
-				document.getElementById("redExterna2").innerHTML = subRedExterna2;
-				document.getElementById("afuera2").innerHTML = dirExterna2;
+                vlanExterna = (nZ * 1 + 10) + "02";
+            }
 
-				document.getElementById("redInterna").innerHTML = subRedInterna;
-				document.getElementById("adentro").innerHTML = dirInterna;
-				document.getElementById("primera").innerHTML = primerDhcp;
-				document.getElementById("ultima").innerHTML = ultimoDhcp;
+            document.getElementById("redExterna").innerHTML = subRedExterna; //pasa al cuerpo HTML
+            document.getElementById("afuera").innerHTML = dirExterna;
+            document.getElementById("redExterna2").innerHTML = subRedExterna2;
+            document.getElementById("afuera2").innerHTML = dirExterna2;
 
-				document.getElementById("vlanExt").innerHTML = vlanExterna;
-			}
+            document.getElementById("redInterna").innerHTML = subRedInterna;
+            document.getElementById("adentro").innerHTML = dirInterna;
+            document.getElementById("primera").innerHTML = primerDhcp;
+            document.getElementById("ultima").innerHTML = ultimoDhcp;
 
-			function armaTxt(){
-				var txt = document.getElementById("plantilla").innerHTML; //script para descargar
+            document.getElementById("vlanExt").innerHTML = vlanExterna;
+        }
 
-				txt = txt.replace(/%SUBREDEXTERNA%/g, subRedExterna); //el /g es para agarre TODAS las coincidencias
-				txt = txt.replace(/%DIREXTERNA%/g, dirExterna); //el % es para diferenciar de cualquier otro tipo de texto
+        function armaTxt() {
+            var txt = document.getElementById("plantilla").innerHTML; //script para descargar
 
-				txt = txt.replace(/%SUBREDEXTERNA2%/g, subRedExterna2);
-				txt = txt.replace(/%DIREXTERNA2%/g, dirExterna2);
+            txt = txt.replace(/%SUBREDEXTERNA%/g, subRedExterna); //el /g es para agarre TODAS las coincidencias
+            txt = txt.replace(/%DIREXTERNA%/g, dirExterna); //el % es para diferenciar de cualquier otro tipo de texto
 
-				txt = txt.replace(/%SUBREDINTERNA%/g, subRedInterna);
-				txt = txt.replace(/%DIRINTERNA%/g, dirInterna);
-				txt = txt.replace(/%DIRPRIMERA%/g, primerDhcp);
-				txt = txt.replace(/%DIRULTIMA%/g, ultimoDhcp);
+            txt = txt.replace(/%SUBREDEXTERNA2%/g, subRedExterna2);
+            txt = txt.replace(/%DIREXTERNA2%/g, dirExterna2);
 
-				txt = txt.replace(/%VLANEXT%/g, vlanExterna);
+            txt = txt.replace(/%SUBREDINTERNA%/g, subRedInterna);
+            txt = txt.replace(/%DIRINTERNA%/g, dirInterna);
+            txt = txt.replace(/%DIRPRIMERA%/g, primerDhcp);
+            txt = txt.replace(/%DIRULTIMA%/g, ultimoDhcp);
 
-				txt = txt.replace(/%NOMPLAZA%/g, nombrePlaza);
-				txt = txt.replace(/%NUMZONA%/g, nZ);
+            txt = txt.replace(/%VLANEXT%/g, vlanExterna);
 
-				document.getElementById("plantilla").innerHTML = txt;
-				//document.write(txt); //reemplaza todo por lo que hay en txt
-			}
+            txt = txt.replace(/%NOMLUGAR%/g, nombreLugar);
+            txt = txt.replace(/%NUMZONA%/g, nZ);
 
-			function muestra(){
-			}
-		</script>
-	</head>
+            document.getElementById("plantilla").innerHTML = txt;
+            //document.write(txt); //reemplaza todo por lo que hay en txt
+        }
 
-
-	<body>
-		<meta charset="UTF-8"> <!--para utilizar símbolos-->
-		<h1 align="center">Creador de plantillas para UBIQUITI</h1>
-
-		<h3>Datos del dispositivo:</h3>
-		Nombre de la plaza: <input id="nombre" type="text"> <br>
-		ID de la plaza: <input id="idGeneral" type="text"> <br>
-		N° de zona: <input id="zona" type="text"> <br>
-		N° de plaza: <input id="plaza" type="text"> <br>
-		N° de AP: <input id="aps" type="text"> <br>
-
-		<input type="button" onClick="cargaDatos();armaSubredes();armaTxt()" value="Cargar datos"> <br><br>
-
-		Nombre del dispositivo = <span onChange="cargaDatos()" id="muestraNombre"></span> <br><br>
-		Subred externa MR GRATUITA = <span onChange="armaSubredes()" id="redExterna"></span>/24 <br>
-		Dirección MR GRATUITA= <span onChange="armaSubredes()" id="afuera"></span> <br><br>
-
-		Subred externa WIFI EVENTOS = <span onChange="armaSubredes()" id="redExterna2"></span>/24 <br>
-		Dirección WIFI EVENTOS = <span onChange="armaSubredes()" id="afuera2"></span> <br><br>
-		VLAN = <span onChange="armaSubredes()" id="vlanExt"></span> <br> <br>
-
-		Subred interna = <span onChange="armaSubredes()" id="redInterna"></span>/28 <br>
-		Dirección = <span onChange="armaSubredes()" id="adentro"></span> <br>
-		Primer dirección DHCP = <span onChange="armaSubredes()" id="primera"></span> <br>
-		Última dirección DHCP = <span onChange="armaSubredes()" id="ultima"></span> <br> <br>
+        function muestra() {}
+    </script>
+</head>
 
 
-		<h3>Instrucciones:</h3>
-		1 - Completar los datos para armar el script <br>
-		2 - Entrar por consola al equipo <br>
-		3 - $ vi plantilla <br>
-		4 - Pegar el texto generado <br><br>
+<body>
+    <meta charset="UTF-8">
+    <!--para utilizar símbolos-->
+    <h1 align="center">Creador de plantillas para UBIQUITI</h1>
 
-		<textarea id="plantilla" rows="80" cols="150">#!/bin/bash
+    <h3>Datos del dispositivo:</h3>
+    Nombre del lugar: <input id="nombre" type="text"> <br> ID del lugar: <input id="idGeneral" type="text"> <br> N° de zona: <input id="zona" type="text"> <br> N° del lugar: <input id="lugar" type="text"> <br> N° de AP: <input id="aps" type="text"> <br>
+
+    <input type="button" onClick="cargaDatos();armaSubredes();armaTxt()" value="Cargar datos"> <br><br> Nombre del dispositivo = <span onChange="cargaDatos()" id="muestraNombre"></span> <br><br> Subred externa Wi-Fi 1 = <span onChange="armaSubredes()"
+        id="redExterna"></span>/24
+    <br> Dirección Wi-Fi 1= <span onChange="armaSubredes()" id="afuera"></span> <br><br> Subred externa Wi-Fi 2 = <span onChange="armaSubredes()" id="redExterna2"></span>/24 <br> Dirección Wi-Fi 2 = <span onChange="armaSubredes()" id="afuera2"></span>    <br><br> VLAN = <span onChange="armaSubredes()" id="vlanExt"></span> <br> <br> Subred interna = <span onChange="armaSubredes()" id="redInterna"></span>/28 <br> Dirección = <span onChange="armaSubredes()" id="adentro"></span> <br> Primer dirección
+    DHCP =
+    <span onChange="armaSubredes()" id="primera"></span> <br> Última dirección DHCP = <span onChange="armaSubredes()" id="ultima"></span> <br> <br>
+
+
+    <h3>Instrucciones:</h3>
+    1 - Completar los datos para armar el script <br> 2 - Entrar por consola al equipo <br> 3 - $ vi plantilla <br> 4 - Pegar el texto generado <br><br>
+
+    <textarea id="plantilla" rows="80" cols="150">#!/bin/bash
 run=/opt/vyatta/sbin/vyatta-cfg-cmd-wrapper
 
 $run begin
@@ -221,8 +205,8 @@ $run set interfaces bridge br2 stp false
 $run set interfaces bridge br3 address 192.168.204.1/22
 $run set interfaces bridge br3 aging 300
 $run set interfaces bridge br3 bridged-conntrack disable
-$run set interfaces bridge br3 description Bridge-EVENTOS
-$run set interfaces bridge br3 dhcp-options client-option DHCP-Clientes_EVENTOS
+$run set interfaces bridge br3 description Bridge-WiFi2
+$run set interfaces bridge br3 dhcp-options client-option DHCP-Clientes_WiFi2
 $run set interfaces bridge br3 dhcp-options default-route update
 $run set interfaces bridge br3 dhcp-options default-route-distance 210
 $run set interfaces bridge br3 dhcp-options name-server update
@@ -273,7 +257,7 @@ $run set interfaces ethernet eth7 duplex auto
 $run set interfaces ethernet eth7 speed auto
 $run set interfaces ethernet eth7 vif %VLANEXT% bridge-group bridge br0
 
-#LOOPBACK (GENERA PROBLEMAS)
+#LOOPBACK
 #$run set interfaces loopback lo address %DIREXTERNA%/32
 
 #OSPF
@@ -301,12 +285,12 @@ $run set service dhcp-server shared-network-name DHCP-Clientes_WiFi subnet 192.1
 $run set service dhcp-server shared-network-name DHCP-Clientes_WiFi subnet 192.168.200.0/22 lease 86400
 $run set service dhcp-server shared-network-name DHCP-Clientes_WiFi subnet 192.168.200.0/22 start 192.168.200.2 stop 192.168.203.254
 
-$run set service dhcp-server shared-network-name DHCP-Clientes_EVENTOS authoritative disable
-$run set service dhcp-server shared-network-name DHCP-Clientes_EVENTOS subnet 192.168.204.0/22 default-router 192.168.204.1
-$run set service dhcp-server shared-network-name DHCP-Clientes_EVENTOS subnet 192.168.204.0/22 dns-server 8.8.8.8
-$run set service dhcp-server shared-network-name DHCP-Clientes_EVENTOS subnet 192.168.204.0/22 dns-server 8.8.4.4
-$run set service dhcp-server shared-network-name DHCP-Clientes_EVENTOS subnet 192.168.204.0/22 lease 86400
-$run set service dhcp-server shared-network-name DHCP-Clientes_EVENTOS subnet 192.168.204.0/22 start 192.168.204.2 stop 192.168.207.254
+$run set service dhcp-server shared-network-name DHCP-Clientes_WiFi2 authoritative disable
+$run set service dhcp-server shared-network-name DHCP-Clientes_WiFi2 subnet 192.168.204.0/22 default-router 192.168.204.1
+$run set service dhcp-server shared-network-name DHCP-Clientes_WiFi2 subnet 192.168.204.0/22 dns-server 8.8.8.8
+$run set service dhcp-server shared-network-name DHCP-Clientes_WiFi2 subnet 192.168.204.0/22 dns-server 8.8.4.4
+$run set service dhcp-server shared-network-name DHCP-Clientes_WiFi2 subnet 192.168.204.0/22 lease 86400
+$run set service dhcp-server shared-network-name DHCP-Clientes_WiFi2 subnet 192.168.204.0/22 start 192.168.204.2 stop 192.168.207.254
 
 $run set service nat rule 5000 description Clientes_WiFi
 $run set service nat rule 5000 log disable
@@ -316,7 +300,7 @@ $run set service nat rule 5000 protocol all
 $run set service nat rule 5000 source address 192.168.200.0/22
 $run set service nat rule 5000 type source
 
-$run set service nat rule 5001 description Clientes_EVENTOS
+$run set service nat rule 5001 description Clientes_WiFi2
 $run set service nat rule 5001 log disable
 $run set service nat rule 5001 outbound-interface br0
 $run set service nat rule 5001 outside-address address %DIREXTERNA2%
@@ -325,12 +309,12 @@ $run set service nat rule 5001 source address 192.168.204.0/22
 $run set service nat rule 5001 type source
 
 $run set service snmp community XXXXXXX authorization ro
-$run set service snmp contact redes@rosario.gov.ar
+$run set service snmp contact networking@empresa.com
 
 #SISTEMA
-$run set system host-name %NOMPLAZA%
+$run set system host-name %NOMLUGAR%
 
-$run set system login user bkp authentication plaintext-password B4ckUP3am3
+$run set system login user bkp authentication plaintext-password XXXXXXX
 $run set system login user bkp full-name "Usuario Backup"
 $run set system login user bkp level operator
 
@@ -338,11 +322,11 @@ $run delete system ntp server 0.ubnt.pool.ntp.org
 $run delete system ntp server 1.ubnt.pool.ntp.org
 $run delete system ntp server 2.ubnt.pool.ntp.org
 $run delete system ntp server 3.ubnt.pool.ntp.org
-$run set system ntp server 10.100.2.21
-$run set system ntp server 10.100.2.22
+$run set system ntp server XXX.XXX.XXX.XXX
+$run set system ntp server XXX.XXX.XXX.XXX
 
-$run set system syslog host 10.100.2.21 facility all level err
-$run set system syslog host 10.100.2.21 facility protocols level err
+$run set system syslog host XXX.XXX.XXX.XXX facility all level err
+$run set system syslog host XXX.XXX.XXX.XXX facility protocols level err
 
 $run set system time-zone America/Argentina/Buenos_Aires
 
@@ -352,12 +336,8 @@ $run set service lldp
 
 #GUARDADO
 $run commit
-$run save</textarea><br><br>
+$run save</textarea><br><br> 5 - $ chmod +x plantilla <br> 6 - $ ./plantilla <br> 7 - $ rm plantilla <br> 8 - Corregir: <b>COMUNIDAD (ro)</b>, <b>USUARIO ADMIN</b> y <b>KEY UNMS</b>.
 
-	5 - $ chmod +x plantilla <br>
-	6 - $ ./plantilla <br>
-	7 - $ rm plantilla <br>
-	8 - Corregir: <b>COMUNIDAD (ro)</b>, <b>USUARIO ADMIN</b> y <b>KEY UNMS</b>.
+</body>
 
-	</body>
 </html>
